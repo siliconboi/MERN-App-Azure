@@ -6,7 +6,6 @@ import { useWeather } from "../hooks/useWeather";
 const Details = () => {
   const { id } = useParams();
   const { isLoadingCoordinates, lon, lat } = useWeather(id);
-  console.log(lon, lat);
   const { isLoading, data, isError } = useGetWeatherQuery({ lat, lon });
 
   if (isLoadingCoordinates || isError || isLoading) {
@@ -16,8 +15,6 @@ const Details = () => {
       </div>
     );
   }
-
-  console.log(data);
   return <div className="details">
     Weather: {data.weather[0].main}<br/>
     Temperature: {Math.floor(data.main.temp-273)}<br/>
