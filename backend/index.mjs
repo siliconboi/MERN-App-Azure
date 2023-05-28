@@ -10,7 +10,6 @@ dotenv.config()
 const app = express();
 
 app.use(morgan('dev'));
-app.use(bodyParser());
 app.use(cors());
 
 app.get('/api', async(req,res)=>{
@@ -25,7 +24,7 @@ const result = await fetch(url,
     }
     })
 console.log(url)
-return res.json(result)
+return res.json(await result.json())
 });
 
 if(process.env.NODE_ENV === "production"){
