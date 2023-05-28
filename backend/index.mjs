@@ -3,18 +3,18 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser"
 import * as dotenv from "dotenv"
-import mongoose from "mongoose";
-import { postRouter } from "./routes/post.mjs";
 
 dotenv.config()
 
 const app = express();
 
-app.use(morgan.dev());
+app.use(morgan('dev'));
 app.use(bodyParser());
 app.use(cors());
 
-app.use('/api/', postRouter);
+app.get('/api', async(req,res)=>{
+console.log(req.query.city)
+});
 
 if(process.env.NODE_ENV === "production"){
     app.use(express.static('../client/build'));
@@ -24,7 +24,6 @@ if(process.env.NODE_ENV === "production"){
 
 const port = process.env.PORT || 8080;
 
-mongoose.connect(process.env.DB_CONNECT, {useNewUrlParser: true}).then(
     app.listen(port, ()=>{
-    console.log(`listening on ${process.env.PORT}`);
-}));
+    console.log(`listening on http://localhost:${port}`);
+});
