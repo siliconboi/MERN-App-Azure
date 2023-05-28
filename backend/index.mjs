@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser"
 import * as dotenv from "dotenv"
+import fetch from "node-fetch";
 
 dotenv.config()
 
@@ -13,7 +14,18 @@ app.use(bodyParser());
 app.use(cors());
 
 app.get('/api', async(req,res)=>{
-console.log(req.query.city)
+    const url = req.query.url+`&appid=ebaa7c546d35fc00f448466579bbd215`
+const result = await fetch(url,
+    {
+    method:"GET",
+    mode: "cors",
+    headers:{
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json"
+    }
+    })
+console.log(url)
+return res.json(result)
 });
 
 if(process.env.NODE_ENV === "production"){
