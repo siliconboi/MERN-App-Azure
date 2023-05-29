@@ -11,7 +11,7 @@ const SearchParams = () => {
   return (
     <div className="container">
       <img
-        src="./_e81c8741-6623-449d-853f-bf3f97732d28.jfif"
+        src="./images/_e81c8741-6623-449d-853f-bf3f97732d28.jfif"
         alt="weather"
         className="brand-logo"
         style={{
